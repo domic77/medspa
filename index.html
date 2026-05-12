@@ -1,0 +1,2530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumière Aesthetics | Glow starts here.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FAFAF8;
+            --text: #1A1A18;
+            --gold: #C9A96E;
+            --blush: #E8D5C4;
+            --surface: #F2EDE7;
+            --deep: #2C2520;
+            --white: #FFFFFF;
+            --muted: #666666;
+            --transition: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 100px 0;
+        }
+
+        .label {
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+
+        .btn-gold:hover {
+            background-color: #b3945d;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--text);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text);
+            color: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 24px 0;
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            padding: 16px 0;
+            background: rgba(250, 250, 248, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            letter-spacing: 0.3em;
+            color: var(--gold);
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--gold);
+            transform: scaleX(0.8);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-book {
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 24px;
+            border-radius: 50px;
+        }
+
+        .nav-book:hover {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text);
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-left {
+            flex: 0 0 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 10%;
+            padding-right: 5%;
+        }
+
+        .hero-right {
+            flex: 0 0 45%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-h1 {
+            font-size: 72px;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-subtext {
+            font-size: 18px;
+            color: var(--muted);
+            margin-bottom: 40px;
+            max-width: 500px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-eyebrow {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.02);
+            transition: transform 3s ease;
+        }
+
+        .hero-img.loaded {
+            transform: scale(1);
+        }
+
+        .social-proof-card {
+            position: absolute;
+            bottom: 10%;
+            left: -10%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            transition: opacity 0.8s ease 0.8s, transform 0.8s ease 0.8s;
+            transform: translateY(20px);
+        }
+
+        .social-proof-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Services Strip */
+        .services-section {
+            background-color: var(--surface);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 48px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 16px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 24px;
+            color: var(--gold);
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .service-card p {
+            color: var(--muted);
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .learn-more {
+            color: var(--gold);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+        }
+
+        .learn-more::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .service-card:hover .learn-more::after {
+            width: 100%;
+        }
+
+        /* AI Quiz Section */
+        .quiz-section {
+            background-color: var(--deep);
+            color: var(--white);
+        }
+
+        .quiz-container {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quiz-header {
+            margin-bottom: 40px;
+        }
+
+        .quiz-header h2 {
+            font-size: 42px;
+            margin-bottom: 16px;
+        }
+
+        .quiz-header p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .quiz-card {
+            background: var(--white);
+            color: var(--text);
+            padding: 48px;
+            border-radius: 24px;
+            text-align: left;
+            position: relative;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quiz-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 24px 24px 0 0;
+            overflow: hidden;
+        }
+
+        .quiz-progress-bar {
+            height: 100%;
+            background: var(--gold);
+            width: 20%;
+            transition: width 0.5s ease;
+        }
+
+        .quiz-step-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .back-btn {
+            font-size: 14px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            visibility: hidden;
+        }
+
+        .back-btn.visible {
+            visibility: visible;
+        }
+
+        .step-counter {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .quiz-question {
+            font-size: 28px;
+            margin-bottom: 32px;
+            line-height: 1.2;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-option {
+            padding: 16px 24px;
+            border: 1px solid var(--surface);
+            border-radius: 50px;
+            text-align: left;
+            transition: var(--transition);
+            background: var(--bg);
+        }
+
+        .quiz-option:hover {
+            border-color: var(--gold);
+        }
+
+        .quiz-option.selected {
+            background-color: var(--gold);
+            color: var(--white);
+            border-color: var(--gold);
+        }
+
+        .quiz-next-container {
+            margin-top: 32px;
+            display: flex;
+            justify-content: flex-end;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .quiz-next-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Quiz Result */
+        .result-card {
+            display: none;
+            animation: scaleUp 0.5s ease forwards;
+        }
+
+        @keyframes scaleUp {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .result-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--gold);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .result-card h3 {
+            text-align: center;
+            font-size: 18px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+
+        .treatment-name {
+            text-align: center;
+            font-size: 32px;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .treatment-desc {
+            color: var(--muted);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .benefits-list {
+            margin-bottom: 32px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+
+        .benefit-item svg {
+            color: var(--gold);
+            flex-shrink: 0;
+        }
+
+        .result-cta {
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .result-note {
+            text-align: center;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* Before/After Gallery */
+        .gallery-section {
+            background-color: var(--white);
+        }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+
+        .filter-tab {
+            font-weight: 500;
+            color: var(--muted);
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .filter-tab.active {
+            color: var(--gold);
+        }
+
+        .filter-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-card {
+            position: relative;
+            aspect-ratio: 3/4;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s ease;
+        }
+
+        .before-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: 0.4s ease;
+            filter: saturate(0.6) contrast(0.9);
+        }
+
+        .gallery-card:hover .before-layer {
+            opacity: 1;
+        }
+
+        .label-chip {
+            position: absolute;
+            top: 16px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: rgba(255,255,255,0.9);
+            color: var(--text);
+            opacity: 0;
+            transition: 0.4s ease;
+        }
+
+        .label-after { right: 16px; opacity: 1; background: var(--gold); color: var(--white); }
+        .label-before { left: 16px; }
+
+        .gallery-card:hover .label-before { opacity: 1; }
+
+        .gallery-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--white);
+        }
+
+        .gallery-info .treatment-tag {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .gallery-info .timeline {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Glow Club Membership */
+        .membership-section {
+            background: linear-gradient(to right, #2C2520, #3D2E1E);
+            color: var(--white);
+            overflow: hidden;
+        }
+
+        .membership-container {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .membership-left {
+            flex: 1;
+        }
+
+        .membership-right {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .membership-benefits {
+            margin: 32px 0;
+        }
+
+        .membership-benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .membership-benefit svg {
+            color: var(--gold);
+        }
+
+        .price-reveal {
+            margin-bottom: 32px;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            opacity: 0.5;
+            margin-right: 12px;
+        }
+
+        .new-price {
+            font-size: 32px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .price-note {
+            display: block;
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+
+        .glow-card {
+            width: 380px;
+            height: 220px;
+            background: #1a1612;
+            border-radius: 16px;
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            padding: 32px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3%3Ffilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            background-blend-mode: overlay;
+        }
+
+        .glow-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(201, 169, 110, 0.1),
+                transparent
+            );
+            transform: skewX(-25deg);
+            animation: shimmer 4s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            30% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        .card-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 0.3em;
+            color: var(--gold);
+        }
+
+        .card-title {
+            font-size: 18px;
+            letter-spacing: 0.4em;
+            color: var(--gold);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .card-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .member-info {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .member-name {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 4px;
+            opacity: 1;
+        }
+
+        .card-chip {
+            width: 40px;
+            height: 30px;
+            background: linear-gradient(135deg, #C9A96E, #8e7343);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .membership-trust {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Social Proof / Stats */
+        .stats-section {
+            background-color: var(--white);
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .stats-left {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 64px;
+            color: var(--gold);
+            display: block;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .stats-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--surface);
+            padding: 32px;
+            border-radius: 16px;
+            position: relative;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            opacity: 0.1;
+            width: 40px;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .testimonial-treatment {
+            font-weight: 400;
+            color: var(--muted);
+        }
+
+        /* About Section */
+        .about-section {
+            background-color: var(--surface);
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-content {
+            flex: 1.2;
+        }
+
+        .about-content h2 {
+            font-size: 48px;
+            margin-bottom: 24px;
+        }
+
+        .about-content p {
+            color: var(--muted);
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .trust-badges {
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .trust-badge svg {
+            color: var(--gold);
+        }
+
+        /* Instagram Strip */
+        .instagram-section {
+            padding: 80px 0;
+            background-color: var(--white);
+            overflow: hidden;
+        }
+
+        .insta-strip-container {
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .insta-strip {
+            display: flex;
+            gap: 12px;
+            animation: scroll 40s linear infinite;
+            width: max-content;
+        }
+
+        .insta-strip:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .insta-tile {
+            width: 220px;
+            height: 220px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .insta-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .insta-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            color: var(--white);
+            transition: 0.4s ease;
+        }
+
+        .insta-tile:hover .insta-overlay {
+            bottom: 0;
+        }
+
+        .insta-stat {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
+
+        .insta-icon {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+        }
+
+        .insta-btn-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Smart Booking Widget */
+        .booking-section {
+            background-color: var(--surface);
+        }
+
+        .booking-card {
+            background: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+            display: flex;
+            min-height: 500px;
+        }
+
+        .booking-left {
+            flex: 1.2;
+            padding: 40px;
+            border-right: 1px solid var(--surface);
+        }
+
+        .booking-right {
+            flex: 1;
+            padding: 40px;
+            background: var(--bg);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+
+        .day-name {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .calendar-day.available {
+            background: var(--surface);
+        }
+
+        .calendar-day.available:hover {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .calendar-day.selected {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .calendar-day.today {
+            border: 1px solid var(--gold);
+        }
+
+        .calendar-day.unavailable {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .time-header {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .time-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .time-slot {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .time-slot:hover:not(.booked) {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .time-slot.selected {
+            background: var(--gold);
+            color: var(--white);
+            border-color: var(--gold);
+        }
+
+        .time-slot.booked {
+            background: #f5f5f5;
+            color: #ccc;
+            cursor: not-allowed;
+            border-color: #eee;
+        }
+
+        .booking-info-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 24px;
+        }
+
+        .confirm-booking-btn {
+            width: 100%;
+        }
+
+        /* Confirmation State */
+        .confirmation-state {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .success-checkmark {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 24px;
+        }
+
+        .check-path {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: drawCheck 0.8s ease forwards;
+        }
+
+        @keyframes drawCheck {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .confirmation-state h2 {
+            font-size: 32px;
+            margin-bottom: 16px;
+        }
+
+        .booking-summary {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 32px;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        /* Booking CTA Section */
+        .cta-section {
+            background-color: var(--deep);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+        }
+
+        .pulse-btn {
+            animation: pulseGlow 3s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(201, 169, 110, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(201, 169, 110, 0); }
+        }
+
+        .cta-footer-note {
+            margin-top: 24px;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text);
+            color: var(--white);
+            padding: 80px 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline {
+            opacity: 0.6;
+            max-width: 300px;
+            margin-bottom: 24px;
+        }
+
+        .footer-links h4 {
+            font-size: 18px;
+            margin-bottom: 24px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            opacity: 0.6;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.4;
+        }
+
+        /* AI Chat Widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+        }
+
+        .chat-trigger {
+            width: 60px;
+            height: 60px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            box-shadow: 0 10px 30px rgba(201, 169, 110, 0.3);
+            position: relative;
+        }
+
+        .chat-trigger::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            animation: pulseRing 2s infinite;
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.2); opacity: 0; }
+        }
+
+        .chat-badge {
+            position: absolute;
+            right: 70px;
+            top: 15px;
+            background: var(--white);
+            color: var(--text);
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateX(10px);
+            transition: 0.5s ease;
+            pointer-events: none;
+        }
+
+        .chat-badge.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .chat-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 360px;
+            height: 480px;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            pointer-events: none;
+            transition: 0.3s ease;
+        }
+
+        .chat-window.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+
+        .chat-header {
+            padding: 20px;
+            background: var(--white);
+            border-bottom: 1px solid var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+        }
+
+        .message-bot {
+            background: var(--surface);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-user {
+            background: var(--gold);
+            color: var(--white);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: var(--surface);
+            border-radius: 16px;
+            align-self: flex-start;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-4px); }
+        }
+
+        .chat-input-area {
+            padding: 16px;
+            border-top: 1px solid var(--surface);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid var(--surface);
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .chat-send {
+            width: 40px;
+            height: 40px;
+            background: var(--gold);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding-top: 100px;
+            }
+            .hero-content {
+                flex-direction: column;
+            }
+            .hero-left {
+                flex: 1;
+                padding: 40px 24px;
+                order: 2;
+            }
+            .hero-right {
+                flex: 1;
+                height: 40vh;
+                order: 1;
+            }
+            .hero-h1 {
+                font-size: 48px;
+            }
+            .social-proof-card {
+                left: 24px;
+                bottom: 20px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+                overflow-x: auto;
+                display: flex;
+                padding-bottom: 20px;
+            }
+            .service-card {
+                min-width: 280px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .stats-container {
+                flex-direction: column;
+            }
+            .about-container {
+                flex-direction: column;
+            }
+            .membership-container {
+                flex-direction: column;
+            }
+            .glow-card {
+                width: 100%;
+                max-width: 340px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .booking-card {
+                flex-direction: column;
+            }
+            .booking-left {
+                border-right: none;
+                border-bottom: 1px solid var(--surface);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .chat-window {
+                width: calc(100vw - 40px);
+                right: -10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#" class="logo">LUMIÈRE</a>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#results">Results</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <a href="#booking" class="nav-book">Book Now</a>
+                <button class="hamburger" id="menuToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <span class="label hero-eyebrow">ADVANCED AESTHETIC MEDICINE</span>
+                <h1 class="hero-h1">Reveal the skin you've always had.</h1>
+                <p class="hero-subtext">Precision treatments. Personalized results. Find your perfect glow with our AI skin analysis.</p>
+                <div class="hero-ctas">
+                    <a href="#quiz" class="btn btn-gold">Find My Treatment</a>
+                    <a href="#services" class="btn btn-outline">View Services</a>
+                </div>
+            </div>
+            <div class="hero-right">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=900" alt="Luxury Skincare" class="hero-img" id="heroImg">
+                <div class="social-proof-card" id="heroSocialCard">
+                    <div style="color: var(--gold); font-weight: 700;">⭐ 4.9</div>
+                    <div style="font-size: 14px; color: var(--muted);">200+ happy clients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Strip -->
+    <section class="services-section section-padding" id="services">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="label">WHAT WE OFFER</span>
+                <h2>Treatments tailored to you.</h2>
+            </div>
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card fade-up">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 3L14.5 9L21 10L16 15L17.5 21L12 18L6.5 21L8 15L3 10L9.5 9L12 3Z" />
+                        </svg>
+                    </div>
+                    <h3>Botox & Fillers</h3>
+                    <p>Smooth fine lines and restore natural volume with precision micro-injections.</p>
+                    <a href="#" class="learn-more">Learn More →</a>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card fade-up" style="transition-delay: 0.1s;">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M6 3L18 3L21 9L12 21L3 9L6 3Z" />
+                            <path d="M3 9L21 9" />
+                            <path d="M12 21L6 3" />
+                            <path d="M12 21L18 3" />
+                        </svg>
+                    </div>
+                    <h3>Laser Treatments</h3>
+                    <p>Target pigmentation, texture, and tone with medical-grade laser technology.</p>
+                    <a href="#" class="learn-more">Learn More →</a>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card fade-up" style="transition-delay: 0.2s;">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 22C12 22 20 18 20 12C20 6 12 2 12 2C12 2 4 6 4 12C4 18 12 22 12 22Z" />
+                            <path d="M12 22V12" />
+                            <path d="M12 12L20 12" />
+                            <path d="M12 12L4 12" />
+                        </svg>
+                    </div>
+                    <h3>Skin Rejuvenation</h3>
+                    <p>Chemical peels, microneedling, and facials for a lasting, radiant complexion.</p>
+                    <a href="#" class="learn-more">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Quiz Section -->
+    <section class="quiz-section section-padding" id="quiz">
+        <div class="container">
+            <div class="quiz-container">
+                <div class="quiz-header fade-up">
+                    <span class="label">AI-POWERED SKIN ANALYSIS</span>
+                    <h2>Find your perfect treatment in 60 seconds.</h2>
+                    <p>Answer 5 quick questions and our AI recommends the exact treatment your skin needs.</p>
+                </div>
+
+                <div class="quiz-card fade-up">
+                    <div class="quiz-progress">
+                        <div class="quiz-progress-bar" id="quizProgress"></div>
+                    </div>
+                    <div class="quiz-step-info">
+                        <button class="back-btn" id="quizBack">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                            Back
+                        </button>
+                        <span class="step-counter" id="stepCounter">1 of 5</span>
+                    </div>
+
+                    <div id="quizContent">
+                        <!-- Questions will be injected here -->
+                    </div>
+
+                    <div class="quiz-next-container" id="nextContainer">
+                        <button class="btn btn-gold" id="quizNext">Next →</button>
+                    </div>
+
+                    <!-- Result Screen -->
+                    <div class="result-card" id="quizResult">
+                        <div class="result-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                        </div>
+                        <h3>Your Personalized Recommendation</h3>
+                        <div class="treatment-name" id="recommendedTreatment">Botox & Filler Combo</div>
+                        <p class="treatment-desc" id="treatmentDesc">Based on your concerns about fine lines and volume, we recommend a combination approach to smooth and lift.</p>
+                        <div class="benefits-list">
+                            <div class="benefit-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                                <span>Visible results in 7–14 days</span>
+                            </div>
+                            <div class="benefit-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                                <span>No downtime required</span>
+                            </div>
+                            <div class="benefit-item">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                                <span>Tailored to your skin type</span>
+                            </div>
+                        </div>
+                        <a href="#booking" class="btn btn-gold result-cta">Book Your Consultation — $0 deposit</a>
+                        <p class="result-note">Free 15-min consultation call with our lead aesthetician</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Before/After Gallery -->
+    <section class="gallery-section section-padding" id="results">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="label">REAL RESULTS</span>
+                <h2>See the transformation.</h2>
+                <p>Every result is from a real Lumière client. Hover to reveal the before.</p>
+            </div>
+
+            <div class="filter-tabs fade-up">
+                <button class="filter-tab active" data-filter="all">All</button>
+                <button class="filter-tab" data-filter="botox">Botox & Fillers</button>
+                <button class="filter-tab" data-filter="laser">Laser</button>
+                <button class="filter-tab" data-filter="skin">Skin Rejuvenation</button>
+            </div>
+
+            <div class="gallery-grid">
+                <!-- Item 1 -->
+                <div class="gallery-card fade-up" data-category="botox">
+                    <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600" alt="After" class="gallery-img">
+                    <div class="before-layer">
+                        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600" alt="Before" class="gallery-img">
+                    </div>
+                    <span class="label-chip label-before">Before</span>
+                    <span class="label-chip label-after">After</span>
+                    <div class="gallery-info">
+                        <span class="treatment-tag">Botox & Fillers</span>
+                        <span class="timeline">2 weeks post-treatment</span>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="gallery-card fade-up" data-category="laser" style="transition-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600" alt="After" class="gallery-img">
+                    <div class="before-layer">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=600" alt="Before" class="gallery-img">
+                    </div>
+                    <span class="label-chip label-before">Before</span>
+                    <span class="label-chip label-after">After</span>
+                    <div class="gallery-info">
+                        <span class="treatment-tag">Laser Resurfacing</span>
+                        <span class="timeline">4 weeks post-treatment</span>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="gallery-card fade-up" data-category="skin" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600" alt="After" class="gallery-img">
+                    <div class="before-layer">
+                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600" alt="Before" class="gallery-img">
+                    </div>
+                    <span class="label-chip label-before">Before</span>
+                    <span class="label-chip label-after">After</span>
+                    <div class="gallery-info">
+                        <span class="treatment-tag">Chemical Peel</span>
+                        <span class="timeline">1 week post-treatment</span>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="gallery-card fade-up" data-category="botox">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600" alt="After" class="gallery-img">
+                    <div class="before-layer">
+                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=600" alt="Before" class="gallery-img">
+                    </div>
+                    <span class="label-chip label-before">Before</span>
+                    <span class="label-chip label-after">After</span>
+                    <div class="gallery-info">
+                        <span class="treatment-tag">Lip Filler</span>
+                        <span class="timeline">10 days post-treatment</span>
+                    </div>
+                </div>
+                <!-- Item 5 -->
+                <div class="gallery-card fade-up" data-category="laser" style="transition-delay: 0.1s;">
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600" alt="After" class="gallery-img">
+                    <div class="before-layer">
+                        <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600" alt="Before" class="gallery-img">
+                    </div>
+                    <span class="label-chip label-before">Before</span>
+                    <span class="label-chip label-after">After</span>
+                    <div class="gallery-info">
+                        <span class="treatment-tag">Laser Hair Removal</span>
+                        <span class="timeline">6 weeks post-treatment</span>
+                    </div>
+                </div>
+                <!-- Item 6 -->
+                <div class="gallery-card fade-up" data-category="skin" style="transition-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600" alt="After" class="gallery-img">
+                    <div class="before-layer">
+                        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600" alt="Before" class="gallery-img">
+                    </div>
+                    <span class="label-chip label-before">Before</span>
+                    <span class="label-chip label-after">After</span>
+                    <div class="gallery-info">
+                        <span class="treatment-tag">Microneedling</span>
+                        <span class="timeline">3 weeks post-treatment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glow Club Membership -->
+    <section class="membership-section section-padding">
+        <div class="container">
+            <div class="membership-container">
+                <div class="membership-left fade-up">
+                    <span class="label">MEMBERS ONLY</span>
+                    <h2 style="font-size: 48px; margin-bottom: 24px;">Join the Glow Club.</h2>
+                    <p style="opacity: 0.8; font-size: 18px; margin-bottom: 32px;">Our members save 20% on every treatment, get priority booking, and receive exclusive early access to new procedures. One flat monthly rate. Cancel anytime.</p>
+                    <div class="membership-benefits">
+                        <div class="membership-benefit">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                            <span>20% off all treatments, every visit</span>
+                        </div>
+                        <div class="membership-benefit">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                            <span>Priority same-week appointment slots</span>
+                        </div>
+                        <div class="membership-benefit">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+                            <span>Exclusive member-only events & gifts</span>
+                        </div>
+                    </div>
+                    <div class="price-reveal">
+                        <span class="old-price">~$99/mo~</span>
+                        <span class="new-price">$49/month</span>
+                        <span class="price-note">Founding member rate — limited spots</span>
+                    </div>
+                    <a href="#" class="btn btn-gold">Join for $49/month →</a>
+                </div>
+                <div class="membership-right fade-up">
+                    <div class="glow-card" id="glowCard">
+                        <div class="card-logo">LUMIÈRE</div>
+                        <div class="card-title">GLOW CLUB MEMBER</div>
+                        <div class="card-bottom">
+                            <div class="member-info">
+                                <span class="member-name">Sarah M.</span>
+                                <span>Member since 2025</span>
+                            </div>
+                            <div class="card-chip"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="membership-trust fade-up">Join 150+ members already saving with the Glow Club.</p>
+        </div>
+    </section>
+
+    <!-- Social Proof / Stats -->
+    <section class="stats-section section-padding">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stats-left">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="200">0</span>
+                        <span class="stat-label">Treatments Completed</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="4.9">0</span>
+                        <span class="stat-label">Average Rating</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="97">0</span>
+                        <span class="stat-label">Would Recommend</span>
+                    </div>
+                </div>
+                <div class="stats-right">
+                    <div class="testimonial-card fade-up">
+                        <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V12C14.017 12.5523 13.5693 13 13.017 13H11.017V21H14.017ZM5.017 21L5.017 18C5.017 16.8954 5.91243 16 7.017 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V12C5.017 12.5523 4.56929 13 4.017 13H2.017V21H5.017Z"/></svg>
+                        <p class="testimonial-text">"I was nervous at first, but the results were beyond what I expected. My skin looks 10 years younger."</p>
+                        <div class="testimonial-author">Sarah M. <span class="testimonial-treatment">— Laser Treatment</span></div>
+                    </div>
+                    <div class="testimonial-card fade-up" style="transition-delay: 0.1s;">
+                        <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V12C14.017 12.5523 13.5693 13 13.017 13H11.017V21H14.017ZM5.017 21L5.017 18C5.017 16.8954 5.91243 16 7.017 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.017C5.46472 8 5.017 8.44772 5.017 9V12C5.017 12.5523 4.56929 13 4.017 13H2.017V21H5.017Z"/></svg>
+                        <p class="testimonial-text">"The AI quiz recommended exactly what I needed. The consultation was so professional and welcoming."</p>
+                        <div class="testimonial-author">Emma R. <span class="testimonial-treatment">— Signature Glow Facial</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section section-padding" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image fade-up">
+                    <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=700" alt="Professional Aesthetician">
+                </div>
+                <div class="about-content fade-up">
+                    <span class="label">WHY LUMIÈRE</span>
+                    <h2>Medicine-grade results. Human-first approach.</h2>
+                    <p>At Lumière, we believe that aesthetic medicine should be as unique as you are. Our clinic combines the latest medical technology with a deep understanding of facial anatomy and skin health.</p>
+                    <p>We don't just treat skin; we reveal the confidence that comes with feeling your best. Every procedure is performed by board-certified practitioners in a luxury, clinical environment.</p>
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <span>Board-Certified Practitioners</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <span>FDA-Approved Treatments</span>
+                        </div>
+                        <div class="trust-badge">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <span>500+ Procedures Performed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Strip -->
+    <section class="instagram-section">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="label">FOLLOW OUR JOURNEY</span>
+                <h2>@lumiere.aesthetics</h2>
+                <p>Real clients. Real results. Updated daily.</p>
+            </div>
+        </div>
+        <div class="insta-strip-container">
+            <div class="insta-strip" id="instaStrip">
+                <!-- 8 tiles repeated for infinite scroll -->
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 847</div><div class="insta-stat">💬 23</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1598440441973-1675005af43e?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 1.2k</div><div class="insta-stat">💬 45</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 632</div><div class="insta-stat">💬 18</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 954</div><div class="insta-stat">💬 31</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 721</div><div class="insta-stat">💬 27</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 1.1k</div><div class="insta-stat">💬 52</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 889</div><div class="insta-stat">💬 19</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 1.4k</div><div class="insta-stat">💬 64</div></div></div>
+                <!-- Duplicate for seamless loop -->
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 847</div><div class="insta-stat">💬 23</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1598440441973-1675005af43e?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 1.2k</div><div class="insta-stat">💬 45</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 632</div><div class="insta-stat">💬 18</div></div></div>
+                <div class="insta-tile"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=400" alt="Insta"><div class="insta-overlay"><div class="insta-stat">❤ 954</div><div class="insta-stat">💬 31</div></div></div>
+            </div>
+        </div>
+        <div class="insta-btn-container fade-up">
+            <a href="#" class="btn btn-outline">Follow on Instagram →</a>
+        </div>
+    </section>
+
+    <!-- Smart Booking Widget -->
+    <section class="booking-section section-padding" id="booking">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="label">BOOK YOUR VISIT</span>
+                <h2>Your consultation is one click away.</h2>
+            </div>
+
+            <div class="booking-card fade-up" id="bookingCard">
+                <div class="booking-left">
+                    <div class="calendar-header">
+                        <h3 id="currentMonth">June 2025</h3>
+                        <div style="display: flex; gap: 10px;">
+                            <button id="prevMonth"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg></button>
+                            <button id="nextMonth"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid">
+                        <div class="day-name">Sun</div><div class="day-name">Mon</div><div class="day-name">Tue</div><div class="day-name">Wed</div><div class="day-name">Thu</div><div class="day-name">Fri</div><div class="day-name">Sat</div>
+                        <!-- Days will be injected here -->
+                    </div>
+                </div>
+                <div class="booking-right">
+                    <div class="time-header" id="timeHeader">Available times for June 12</div>
+                    <div class="time-grid" id="timeGrid">
+                        <div class="time-slot" data-time="9:00 AM">9:00 AM ✓</div>
+                        <div class="time-slot" data-time="10:30 AM">10:30 AM ✓</div>
+                        <div class="time-slot booked">12:00 PM —</div>
+                        <div class="time-slot" data-time="2:00 PM">2:00 PM ✓</div>
+                        <div class="time-slot" data-time="3:30 PM">3:30 PM ✓</div>
+                        <div class="time-slot" data-time="5:00 PM">5:00 PM ✓</div>
+                    </div>
+                    <div class="booking-info-label">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                        15-min Free Consultation
+                    </div>
+                    <button class="btn btn-gold confirm-booking-btn" id="confirmBooking" disabled>Confirm My Booking →</button>
+                </div>
+
+                <!-- Confirmation State -->
+                <div class="confirmation-state" id="bookingConfirmation">
+                    <svg class="success-checkmark" viewBox="0 0 52 52">
+                        <circle cx="26" cy="26" r="25" fill="none" stroke="#C9A96E" stroke-width="2"/>
+                        <path class="check-path" fill="none" stroke="#C9A96E" stroke-width="3" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                    <h2>You're booked! 🎉</h2>
+                    <div class="booking-summary">
+                        <div id="summaryDate" style="font-weight: 700; margin-bottom: 4px;">June 12, 2025</div>
+                        <div id="summaryTime" style="color: var(--gold); font-weight: 700;">10:30 AM</div>
+                        <div style="font-size: 14px; margin-top: 8px; opacity: 0.7;">Free Consultation</div>
+                    </div>
+                    <p style="color: var(--muted); margin-bottom: 24px;">We'll send a reminder to your phone before your visit.</p>
+                    <button class="btn btn-outline">Add to Calendar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking CTA Section -->
+    <section class="cta-section section-padding">
+        <div class="container">
+            <div class="fade-up">
+                <h2>Ready to start your glow journey?</h2>
+                <p>Book a free 15-minute consultation. No commitment, no pressure.</p>
+                <a href="#booking" class="btn btn-gold pulse-btn">Book My Free Consultation →</a>
+                <div class="cta-footer-note">📍 Based in Beverly Hills · 📞 Available Mon–Sat</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="#" class="logo footer-logo">LUMIÈRE</a>
+                    <p class="footer-tagline">Advanced aesthetic medicine. Personalized results. Glow starts here.</p>
+                    <p style="opacity: 0.4; font-size: 14px;">&copy; 2025 Lumière Aesthetics. All rights reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#quiz">Skin Quiz</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                        <a href="#" class="social-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+                        <a href="#" class="social-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12a5 5 0 1 1 4.91 5L14 21l-3.5-2-3.5 2 1.09-4A5 5 0 0 1 9 12z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                Designed for Lumière Aesthetics Demo — Internal Use Only
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-badge" id="chatBadge">Ask Lumière AI</div>
+        <button class="chat-trigger" id="chatTrigger">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <span class="online-dot"></span>
+                    <span style="font-weight: 700;">Lumière AI Assistant</span>
+                </div>
+                <button id="closeChat"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message message-bot">
+                    Hi! 👋 I'm Lumière's virtual assistant. Ask me anything about our treatments, pricing, or availability.
+                </div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type your question...">
+                <button class="chat-send" id="chatSend">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Navigation Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // --- Hero Animations ---
+        window.addEventListener('load', () => {
+            const heroImg = document.getElementById('heroImg');
+            const heroSocialCard = document.getElementById('heroSocialCard');
+            const heroElements = [
+                '.hero-eyebrow',
+                '.hero-h1',
+                '.hero-subtext',
+                '.hero-ctas'
+            ];
+
+            heroImg.classList.add('loaded');
+            
+            heroElements.forEach((selector, index) => {
+                setTimeout(() => {
+                    const el = document.querySelector(selector);
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                    el.style.transition = '0.8s ease';
+                }, 100 * (index + 1));
+            });
+
+            setTimeout(() => {
+                heroSocialCard.classList.add('visible');
+            }, 800);
+        });
+
+        // --- Intersection Observer for Fade-Up ---
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // If it's a stat number, trigger count-up
+                    if (entry.target.classList.contains('stat-number')) {
+                        animateValue(entry.target);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up, .stat-number').forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- Stats Count-Up Animation ---
+        function animateValue(obj) {
+            const target = parseFloat(obj.getAttribute('data-target'));
+            const duration = 2000;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                let value = progress * target;
+                
+                if (target % 1 !== 0) {
+                    obj.innerHTML = value.toFixed(1) + (target === 4.9 ? '★' : '');
+                } else {
+                    obj.innerHTML = Math.floor(value) + (target === 97 ? '%' : '+');
+                }
+                
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // --- AI Quiz Logic ---
+        const quizData = [
+            {
+                question: "What's your biggest skin concern right now?",
+                options: ["Fine lines & wrinkles", "Loss of volume / sagging", "Dark spots & pigmentation", "Texture & pores", "Dullness & uneven tone"]
+            },
+            {
+                question: "How would you describe your skin?",
+                options: ["Oily or combination", "Dry or sensitive", "Normal / balanced", "Mature (50+)"]
+            },
+            {
+                question: "Have you had any aesthetic treatments before?",
+                options: ["No, this would be my first", "Yes, injectables", "Yes, laser or peels", "Yes, multiple treatments"]
+            },
+            {
+                question: "What result matters most to you?",
+                options: ["Look refreshed / less tired", "Smoother, younger-looking skin", "More defined facial features", "Even, glowing skin tone"]
+            },
+            {
+                question: "When are you looking to start?",
+                options: ["As soon as possible", "Within the next month", "Just exploring for now"]
+            }
+        ];
+
+        let currentStep = 0;
+        let answers = [];
+
+        const quizContent = document.getElementById('quizContent');
+        const quizProgress = document.getElementById('quizProgress');
+        const stepCounter = document.getElementById('stepCounter');
+        const quizBack = document.getElementById('quizBack');
+        const nextContainer = document.getElementById('nextContainer');
+        const quizNext = document.getElementById('quizNext');
+        const quizResult = document.getElementById('quizResult');
+
+        function renderStep() {
+            const step = quizData[currentStep];
+            quizProgress.style.width = `${((currentStep + 1) / quizData.length) * 100}%`;
+            stepCounter.innerText = `${currentStep + 1} of 5`;
+            
+            if (currentStep > 0) quizBack.classList.add('visible');
+            else quizBack.classList.remove('visible');
+
+            nextContainer.classList.remove('visible');
+
+            let html = `<h2 class="quiz-question">${step.question}</h2><div class="quiz-options">`;
+            step.options.forEach((option, index) => {
+                const isSelected = answers[currentStep] === option;
+                html += `<button class="quiz-option ${isSelected ? 'selected' : ''}" onclick="selectOption('${option}')">${option}</button>`;
+            });
+            html += `</div>`;
+            quizContent.innerHTML = html;
+
+            if (answers[currentStep]) nextContainer.classList.add('visible');
+        }
+
+        window.selectOption = (option) => {
+            answers[currentStep] = option;
+            renderStep();
+            nextContainer.classList.add('visible');
+        };
+
+        quizNext.addEventListener('click', () => {
+            if (currentStep < quizData.length - 1) {
+                currentStep++;
+                renderStep();
+            } else {
+                showResult();
+            }
+        });
+
+        quizBack.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                renderStep();
+            }
+        });
+
+        function showResult() {
+            quizContent.style.display = 'none';
+            nextContainer.style.display = 'none';
+            quizBack.style.display = 'none';
+            stepCounter.style.display = 'none';
+            quizProgress.style.width = '100%';
+            
+            const primaryConcern = answers[0];
+            let treatment = "";
+            let desc = "";
+
+            if (primaryConcern.includes("wrinkles") || primaryConcern.includes("volume")) {
+                treatment = "Botox & Filler Combo";
+                desc = "Based on your concerns about fine lines and volume, we recommend a combination approach to smooth and lift for a naturally refreshed look.";
+            } else if (primaryConcern.includes("spots") || primaryConcern.includes("Texture")) {
+                treatment = "Laser Resurfacing Package";
+                desc = "To target pigmentation and texture, our medical-grade laser treatments will reveal a smoother, more even skin tone with minimal downtime.";
+            } else {
+                treatment = "Signature Glow Facial Series";
+                desc = "For dullness and uneven tone, our signature rejuvenation series will deeply hydrate and brighten your complexion for a lasting glow.";
+            }
+
+            document.getElementById('recommendedTreatment').innerText = treatment;
+            document.getElementById('treatmentDesc').innerText = desc;
+            quizResult.style.display = 'block';
+        }
+
+        renderStep();
+
+        // --- Before/After Gallery Filtering ---
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const galleryCards = document.querySelectorAll('.gallery-card');
+
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.getAttribute('data-filter');
+
+                galleryCards.forEach(card => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 50);
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }, 300);
+                });
+            });
+        });
+
+        // --- Glow Club Card 3D Tilt ---
+        const glowCard = document.getElementById('glowCard');
+        glowCard.addEventListener('mousemove', (e) => {
+            const rect = glowCard.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            glowCard.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        glowCard.addEventListener('mouseleave', () => {
+            glowCard.style.transform = 'rotateX(0) rotateY(0)';
+        });
+
+        // --- Smart Booking Widget ---
+        const calendarGrid = document.getElementById('calendarGrid');
+        const timeHeader = document.getElementById('timeHeader');
+        const timeSlots = document.querySelectorAll('.time-slot');
+        const confirmBtn = document.getElementById('confirmBooking');
+        const bookingConfirmation = document.getElementById('bookingConfirmation');
+        const bookingLeft = document.querySelector('.booking-left');
+        const bookingRight = document.querySelector('.booking-right');
+
+        let selectedDate = 12;
+        let selectedTime = null;
+
+        function initCalendar() {
+            const daysInMonth = 30;
+            const startDay = 0; // Sunday
+            const unavailableDays = [1, 7, 8, 14, 15, 21, 22, 28, 29, 5, 19]; // Weekends + random
+
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayEl = document.createElement('div');
+                dayEl.classList.add('calendar-day');
+                dayEl.innerText = i;
+                
+                if (unavailableDays.includes(i)) {
+                    dayEl.classList.add('unavailable');
+                } else {
+                    dayEl.classList.add('available');
+                    if (i === 12) dayEl.classList.add('today');
+                    if (i === selectedDate) dayEl.classList.add('selected');
+                    
+                    dayEl.addEventListener('click', () => {
+                        document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+                        dayEl.classList.add('selected');
+                        selectedDate = i;
+                        timeHeader.innerText = `Available times for June ${i}`;
+                        resetTimeSlots();
+                    });
+                }
+                calendarGrid.appendChild(dayEl);
+            }
+        }
+
+        function resetTimeSlots() {
+            timeSlots.forEach(slot => slot.classList.remove('selected'));
+            selectedTime = null;
+            confirmBtn.disabled = true;
+        }
+
+        timeSlots.forEach(slot => {
+            if (!slot.classList.contains('booked')) {
+                slot.addEventListener('click', () => {
+                    timeSlots.forEach(s => s.classList.remove('selected'));
+                    slot.classList.add('selected');
+                    selectedTime = slot.getAttribute('data-time');
+                    confirmBtn.disabled = false;
+                });
+            }
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            document.getElementById('summaryDate').innerText = `June ${selectedDate}, 2025`;
+            document.getElementById('summaryTime').innerText = selectedTime;
+            bookingLeft.style.display = 'none';
+            bookingRight.style.display = 'none';
+            bookingConfirmation.style.display = 'flex';
+        });
+
+        initCalendar();
+
+        // --- AI Chat Widget ---
+        const chatTrigger = document.getElementById('chatTrigger');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeChat = document.getElementById('closeChat');
+        const chatBadge = document.getElementById('chatBadge');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const chatMessages = document.getElementById('chatMessages');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        setTimeout(() => {
+            chatBadge.classList.add('visible');
+        }, 5000);
+
+        chatTrigger.addEventListener('click', () => {
+            chatWindow.classList.toggle('open');
+            chatBadge.classList.remove('visible');
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatWindow.classList.remove('open');
+        });
+
+        const botResponses = {
+            "botox": "Botox starts from $250 per area. Results last 3–4 months. Would you like to book a free consultation?",
+            "filler": "Fillers start from $600 per syringe. Results last 6–12 months. Would you like to book a free consultation?",
+            "price": "Pricing varies by treatment. Most clients spend $300–$800 per session. Our consultations are always free!",
+            "cost": "Pricing varies by treatment. Most clients spend $300–$800 per session. Our consultations are always free!",
+            "how much": "Pricing varies by treatment. Most clients spend $300–$800 per session. Our consultations are always free!",
+            "laser": "Our laser treatments target pigmentation, texture, and hair removal. Recovery is minimal — most clients return to normal activities the same day.",
+            "book": "I'd love to help you book! Click the 'Book Now' button above or scroll up to take our quick skin quiz first.",
+            "appointment": "I'd love to help you book! Click the 'Book Now' button above or scroll up to take our quick skin quiz first.",
+            "schedule": "I'd love to help you book! Click the 'Book Now' button above or scroll up to take our quick skin quiz first.",
+            "hours": "We're open Monday–Saturday, 9am–7pm. Walk-ins welcome but appointments are preferred.",
+            "open": "We're open Monday–Saturday, 9am–7pm. Walk-ins welcome but appointments are preferred.",
+            "available": "We're open Monday–Saturday, 9am–7pm. Walk-ins welcome but appointments are preferred.",
+            "pain": "All our treatments are performed by certified practitioners. Discomfort is minimal — most clients describe it as a light pinch at most.",
+            "hurt": "All our treatments are performed by certified practitioners. Discomfort is minimal — most clients describe it as a light pinch at most.",
+            "safe": "All our treatments are performed by certified practitioners. Discomfort is minimal — most clients describe it as a light pinch at most."
+        };
+
+        function addMessage(text, sender) {
+            const msg = document.createElement('div');
+            msg.classList.add('message', sender === 'user' ? 'message-user' : 'message-bot');
+            msg.innerText = text;
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function handleSend() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            addMessage(text, 'user');
+            chatInput.value = '';
+
+            typingIndicator.style.display = 'flex';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            setTimeout(() => {
+                typingIndicator.style.display = 'none';
+                let response = "Great question! For detailed info on that, I'd recommend booking a free 15-min consultation with our lead aesthetician. Want me to help you schedule one?";
+                
+                const lowerText = text.toLowerCase();
+                for (const key in botResponses) {
+                    if (lowerText.includes(key)) {
+                        response = botResponses[key];
+                        break;
+                    }
+                }
+                addMessage(response, 'bot');
+            }, 1500);
+        }
+
+        chatSend.addEventListener('click', handleSend);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
+        // --- Mobile Menu Toggle ---
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.querySelector('.nav-links');
+        menuToggle.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            if (navLinks.style.display === 'flex') {
+                navLinks.style.position = 'fixed';
+                navLinks.style.top = '0';
+                navLinks.style.left = '0';
+                navLinks.style.width = '100%';
+                navLinks.style.height = '100vh';
+                navLinks.style.backgroundColor = 'var(--bg)';
+                navLinks.style.flexDirection = 'column';
+                navLinks.style.justifyContent = 'center';
+                navLinks.style.alignItems = 'center';
+                navLinks.style.zIndex = '999';
+            }
+        });
+    </script>
+</body>
+</html>
