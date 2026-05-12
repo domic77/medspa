@@ -615,7 +615,7 @@
             height: 100%;
             opacity: 0;
             transition: 0.4s ease;
-            filter: saturate(0.6) contrast(0.9);
+            filter: saturate(0.3) contrast(0.85) brightness(0.88) sepia(0.15);
         }
 
         .gallery-card:hover .before-layer {
@@ -637,10 +637,11 @@
             transition: 0.4s ease;
         }
 
-        .label-after { right: 16px; opacity: 1; background: var(--gold); color: var(--white); }
+        .label-after { right: 16px; opacity: 1; background: var(--gold); color: var(--white); transition: 0.4s ease; }
         .label-before { left: 16px; }
 
         .gallery-card:hover .label-before { opacity: 1; }
+        .gallery-card:hover .label-after { opacity: 0; }
 
         .gallery-info {
             position: absolute;
@@ -2088,7 +2089,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                Designed for Lumière Aesthetics Demo — Internal Use Only
+                
             </div>
         </div>
     </footer>
@@ -2173,9 +2174,10 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // If it's a stat number, trigger count-up
-                    if (entry.target.classList.contains('stat-number')) {
+                    if (entry.target.classList.contains('stat-number') && !entry.target.dataset.animated) {
+                        entry.target.dataset.animated = 'true';
                         animateValue(entry.target);
+                        observer.unobserve(entry.target);
                     }
                 }
             });
